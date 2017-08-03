@@ -1,1 +1,17 @@
-asdfÖĞÎÄ
+int[3] a = { 1, 2, 3 };
+int[3] b = { 4, 5, 6 };
+int[3] c;
+
+int main(){
+	temp int32 i
+	mov i, 0
+	
+	loop:
+	add [c + i], [a + i], [b + i]
+	
+	inc i
+	cmp i, 3
+	jl  loop
+	
+	return 0
+}

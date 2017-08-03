@@ -12,6 +12,10 @@ void InitSeparator() {
 	Separator['{'] = true;
 	Separator['}'] = true;
 
+	Separator['='] = true;
+	Separator['+'] = true;
+	Separator['-'] = true;
+	Separator['*'] = true;
 	Separator[';'] = true;
 	Separator[','] = true;
 	Separator[':'] = true;
@@ -23,7 +27,7 @@ void InitSeparator() {
 }
 
 std::wstring GetToken() {
-	if ((!SourceText) || (!SourceLength) || !(SourceLength < SourcePointer)) {
+	if ((!SourceText) || (!SourceLength) || !(SourcePointer < SourceLength)) {
 		return L"";
 	}
 	wchar_t Buffer[64];
@@ -58,10 +62,6 @@ std::wstring GetToken() {
 		} else {
 			break;
 		}
-	}
-
-	if (SourceText[SourcePointer] == 0) {
-		return L"";
 	}
 
 	if (SourceText[SourcePointer] == '\r') {
@@ -266,13 +266,15 @@ std::wstring GetToken() {
 		return OutString;
 	}
 	
-	if (SourceText[SourcePointer] == 0 && SourcePointer != SourcePointer - 1) {
+	if (SourceText[SourcePointer] == 0 && SourcePointer != SourceLength - 1) {
 		throw(UnexpectedEndOfFileException(CurrentLine));
+	} else if (SourceText[SourcePointer] == 0) {
+		return L"";
 	}
 
-	if ((SourceText[SourcePointer] <= 'A' || SourceText[SourcePointer] >= 'Z')
-		&& (SourceText[SourcePointer] <= 'a' || SourceText[SourcePointer] >= 'z')
-		&& (SourceText[SourcePointer] <= '0' || SourceText[SourcePointer] >= '9')
+	if ((SourceText[SourcePointer] < 'A' || SourceText[SourcePointer] > 'Z')
+		&& (SourceText[SourcePointer] < 'a' || SourceText[SourcePointer] > 'z')
+		&& (SourceText[SourcePointer] < '0' || SourceText[SourcePointer] > '9')
 		&& SourceText[SourcePointer] < 128) {
 		throw(UnknownCharacterException(CurrentLine));
 	}
@@ -294,4 +296,33 @@ std::wstring GetToken() {
 			return OutString;
 		}
 	}
+}
+
+uint32 GetTypeID(std::wstring Name) {
+	uint8 ComponentCount = 0;
+	std::map<std::wstring, int>::iterator ResultIterator;
+	if (Name[Name.length() - 1]>='0'&&Name[Name.length() - 1] <= '9') {
+		if (Name[Name.length() - 2] == '1') {
+			ComponentCount = 10 + Name[Name.length() - 1] - '0';
+		} else {
+			ComponentCount = Name[Name.length() - 1] - '0';
+		}
+	}
+	if (ComponentCount >= 2 && ComponentCount <= 16) {
+		std::wstring VectorName;
+		if (ComponentCount < 10) {
+			VectorName = Name.substr(0, Name.length() - 1);
+		} else {
+			VectorName = Name.substr(0, Name.length() - 2);
+		}
+		ResultIterator = TypeMap.find(VectorName);
+		if (ResultIterator != TypeMap.end() && ResultIterator->second >= 0x11 && ResultIterator->second <= 0x1F) {
+			return ((ComponentCount - 1) << 4) | (ResultIterator->second & 0xF);
+		}
+	}
+	ResultIterator = TypeMap.find(Name);
+	if (ResultIterator != TypeMap.end() && (ResultIterator->second < 0x11 || ResultIterator->second > 0x1F)) {
+		return ResultIterator->second;
+	}
+	return NULL;
 }

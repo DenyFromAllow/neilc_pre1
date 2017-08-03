@@ -30,6 +30,9 @@
     <ClCompile Include="textprocess.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="init.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -45,6 +48,9 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="exceptions.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="enum.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

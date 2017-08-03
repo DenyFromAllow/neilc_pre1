@@ -1,0 +1,16 @@
+		void
+		i8		int8						i8vector3		i8vec2		i8v3		int8vector4		int8vec5	int8v6	
+		i16		int16	short				i16vector7		i16vec8		i16v9		int16vector10	int16vec11	int16v12	
+		i32		int32	int					i32vector13		i32vec14	i32v15		int32vector16	int32vec10	int32v11	
+		i64		int64	long				i64vector2		i64vec3		i64v4		int64vector5	int64vec6	int64v7	
+		i128	int128						i128vector8		i128vec9	i128v10		int128vector11	int128vec12	int128v13	
+		i256	int256						i256vector14	i256vec15	i256v16		int256vector2	int256vec3	int256v4	
+		ui8		uint8	byte				ui8vector5		ui8vec6		ui8v7		uint8vector8	uint8vec9	uint8v10	bvector11	bvec12	bytev13
+		ui16	uint16	word	ushort		ui16vector14	ui16vec15	ui16v16		uint16vector2	uint16vec3	uint16v4	wvector5	wvec6	wordv7
+		ui32	uint32	dword	uint		ui32vector8		ui32vec9	ui32v10		uint32vector11	uint32vec12	uint32v13	dvector14	dvec15	dwordv16
+		ui64	uint64	qword	ulong		ui64vector2		ui64vec3	ui64v4		uint64vector5	uint64vec6	uint64v7	qvector8	qvec9	qwordv10
+		ui128	uint128						ui128vector11	ui128vec12	ui128v13	uint128vector14	uint128vec15	uint128v16	
+		ui256	uint256						ui256vector2	ui256vec3	ui256v4		uint256vector5	uint256vec6	uint256v7	
+		float								fvector8		fvec9		floatv10	floatvector11	floatvec12	vector13
+		double								dfvector14		dfvec15		doublev16	doublevector2	doublevec3
+		quadruple		quad				qfvector4		qfvec5		quadv6		quadvector7		quadvec8

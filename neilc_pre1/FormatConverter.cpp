@@ -72,16 +72,16 @@ int ConvertFormat(wchar_t *&dst, char *src) {
 
 	if (format == ansi) {
 		length = MultiByteToWideChar(CP_ACP, NULL, src, -1, nullptr, 0);
-		dst = new wchar_t[length + 1];
+		dst = new wchar_t[length];
 		MultiByteToWideChar(CP_ACP, NULL, src, -1, dst, length);
-		dst[length] = 0;
-		return length + 1;
+		//dst[length] = 0;
+		return length;
 	} else if (format == utf8) {
 		length = MultiByteToWideChar(CP_UTF8, NULL, src, -1, nullptr, 0);
-		dst = new wchar_t[length + 1];
+		dst = new wchar_t[length];
 		MultiByteToWideChar(CP_UTF8, NULL, src, -1, dst, length);
-		dst[length] = 0;
-		return length + 1;
+		//dst[length] = 0;
+		return length;
 	} else if (format == ucs2) {
 		dst = nullptr;
 		return 0;

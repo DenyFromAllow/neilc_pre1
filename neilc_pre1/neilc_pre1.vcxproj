@@ -114,11 +114,13 @@
   <ItemGroup>
     <ClCompile Include="FormatConverter.cpp" />
     <ClCompile Include="GlobalVaribles.cpp" />
+    <ClCompile Include="init.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="textprocess.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="enum.h" />
     <ClInclude Include="exceptions.h" />
     <ClInclude Include="GlobalVaribles.h" />
     <ClInclude Include="main.h" />
